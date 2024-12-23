@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input id="name" type="text" formControlName="name">
+      <div *ngIf="userForm.get('name')?.errors?.['required'] && userForm.get('name')?.touched" class="error">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email">
+      <div *ngIf="userForm.get('email')?.errors?.['required'] && userForm.get('email')?.touched" class="error">
+        Email is required
+      </div>
+      <div *ngIf="userForm.get('email')?.errors?.['email'] && userForm.get('email')?.touched" class="error">
+        Please enter a valid email
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input id="location" type="text" formControlName="location">
+      <div *ngIf="userForm.get('location')?.errors?.['required'] && userForm.get('location')?.touched" class="error">
+        Location is required
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" [disabled]="!userForm.valid" class="btn-primary">
+        {{ isEditMode ? 'Update' : 'Add' }} User
+      </button>
+      <button type="button" class="btn-secondary" (click)="goBack()">Cancel</button>
+      
+    </div>
+  </form>
+</div>

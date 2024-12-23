@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>User Management</h2>
+  <div class="actions">
+    <button [routerLink]="['/user/add']" class="btn-primary">Add User</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.location }}</td>
+        <td>
+          <button [routerLink]="['/user/edit', user._id]" class="btn-secondary">Edit</button>
+          <button (click)="deleteUser(user._id)" class="btn-danger">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
